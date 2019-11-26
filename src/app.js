@@ -3,17 +3,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
 const app = express();
+dotenv.config();
 
 // Connects to DB
-mongoose.connect(
-  'mongodb+srv://pmarcosfelipe:s1f65v9200@cluster0-b4zlk.azure.mongodb.net/test?retryWrites=true&w=majority',
-  {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-  }
-);
+mongoose.connect(process.env.DATABASE, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+const Product = require('./models/product');
 
 const indexRoute = require('./routes/index');
 const productRoute = require('./routes/product');
