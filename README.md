@@ -1,6 +1,6 @@
 # Node-Store
 
-Project created to study how to create APIs with NODE.
+Project created to study the APIs implementation using NODE based in courses offered by [balta.io](https://balta.io/)
 
 ## Installation
 
@@ -15,6 +15,9 @@ npm install
 ```bash
 npm start
 ```
+
+## References
+[balta.io](https://balta.io/)
 
 
 ## License
