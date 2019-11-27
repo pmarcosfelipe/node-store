@@ -5,51 +5,43 @@ const Product = mongoose.model('Product');
 const ValidationContract = require('../validators/validator');
 const productRepository = require('../repositories/product');
 
-exports.get = (req, res, next) => {
-  productRepository
-    .get()
-    .then(data => {
-      res.status(200).send(data);
-    })
-    .catch(err => {
-      res.status(400).send(err);
-    });
+exports.get = async (req, res, next) => {
+  try {
+    let data = await productRepository.get();
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send({ message: 'Falha ao processar sua requisição' });
+  }
 };
 
-exports.getBySlug = (req, res, next) => {
-  productRepository
-    .getBySlug(req.params.slug)
-    .then(data => {
-      res.status(200).send(data);
-    })
-    .catch(err => {
-      res.status(400).send(err);
-    });
+exports.getBySlug = async (req, res, next) => {
+  try {
+    let data = await productRepository.getBySlug(req.params.slug);
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send({ message: 'Falha ao processar sua requisição' });
+  }
 };
 
-exports.getByID = (req, res, next) => {
-  productRepository
-    .getByID(req.params.id)
-    .then(data => {
-      res.status(200).send(data);
-    })
-    .catch(err => {
-      res.status(400).send(err);
-    });
+exports.getByID = async (req, res, next) => {
+  try {
+    let data = await productRepository.getByID(req.params.id);
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send({ message: 'Falha ao processar sua requisição' });
+  }
 };
 
-exports.getByTag = (req, res, next) => {
-  productRepository
-    .getByTag(req.params.tag)
-    .then(data => {
-      res.status(200).send(data);
-    })
-    .catch(err => {
-      res.status(400).send(err);
-    });
+exports.getByTag = async (req, res, next) => {
+  try {
+    let data = await productRepository.getByTag(req.params.tag);
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send({ message: 'Falha ao processar sua requisição' });
+  }
 };
 
-exports.post = (req, res, next) => {
+exports.post = async (req, res, next) => {
   let contract = new ValidationContract();
   contract.hasMinLen(
     req.body.title,
@@ -75,40 +67,28 @@ exports.post = (req, res, next) => {
     return;
   }
 
-  productRepository
-    .create(req.body)
-    .then(x => {
-      res.status(201).send({ message: 'Produto cadastrado com sucesso!' });
-    })
-    .catch(err => {
-      res
-        .status(400)
-        .send({ message: 'Falha ao cadastrar o produto!', data: err });
-    });
+  try {
+    await productRepository.create(req.body);
+    res.status(201).send({ message: 'Produto cadastrado com sucesso!' });
+  } catch (error) {
+    res.status(500).send({ message: 'Falha ao processar sua requisição' });
+  }
 };
 
-exports.put = (req, res, next) => {
-  productRepository
-    .update(req.params.id, req.body)
-    .then(x => {
-      res.status(200).send({ message: 'Produto atualizado com sucesso!' });
-    })
-    .catch(err => {
-      res
-        .status(400)
-        .send({ message: 'Falha ao atualizar o produto!', data: err });
-    });
+exports.put = async (req, res, next) => {
+  try {
+    await productRepository.update(req.params.id, req.body);
+    res.status(200).send({ message: 'Produto atualizado com sucesso!' });
+  } catch (error) {
+    res.status(500).send({ message: 'Falha ao processar sua requisição' });
+  }
 };
 
-exports.delete = (req, res, next) => {
-  productRepository
-    .delete(req.body.id)
-    .then(x => {
-      res.status(200).send({ message: 'Produto removido com sucesso!' });
-    })
-    .catch(err => {
-      res
-        .status(400)
-        .send({ message: 'Falha ao remover o produto!', data: err });
-    });
+exports.delete = async (req, res, next) => {
+  try {
+    await productRepository.delete(req.body.id);
+    res.status(200).send({ message: 'Produto removido com sucesso!' });
+  } catch (error) {
+    res.status(500).send({ message: 'Falha ao processar sua requisição' });
+  }
 };
