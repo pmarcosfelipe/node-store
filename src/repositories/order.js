@@ -9,6 +9,8 @@ exports.create = async data => {
 };
 
 exports.get = async data => {
-  var res = await Order.find({});
+  var res = await Order.find({}, 'number status customer items')
+    .populate('customer', 'nome')
+    .populate('items.product', 'title');
   return res;
 };
