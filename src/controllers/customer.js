@@ -3,6 +3,7 @@
 const ValidationContract = require('../validators/validator');
 const customerRepository = require('../repositories/customer');
 const md5 = require('md5');
+const emailService = require('../services/email-service');
 
 exports.post = async (req, res, next) => {
   let contract = new ValidationContract();
@@ -32,6 +33,13 @@ exports.post = async (req, res, next) => {
       email: req.body.email,
       password: md5(req.body.password + global.SALT_KEY)
     });
+
+    emailService.send(
+      req.body.email,
+      'Bem vindo à Node Store!',
+      global.EMAIL_TMPL.replace('{0}', req.body.name)
+    );
+
     res.status(201).send({ message: 'Cliente cadastrado com sucesso!' });
   } catch (error) {
     res.status(500).send({ message: 'Falha ao processar sua requisição' });
