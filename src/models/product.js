@@ -29,7 +29,12 @@ const schema = new Schema({
     required: true,
     default: true
   },
-  tags: [{ type: String, required: true }]
+  tags: [{ type: String, required: true }],
+  image: {
+    type: String,
+    required: true,
+    trim: true
+  }
 });
 
 module.exports = mongoose.model('Product', schema);
