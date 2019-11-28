@@ -3,12 +3,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+const config = require('./config');
 
 const app = express();
-dotenv.config();
 
-mongoose.connect(process.env.DATABASE, {
+mongoose.connect(config.connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
