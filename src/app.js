@@ -14,6 +14,7 @@ mongoose.connect(process.env.DATABASE, {
 });
 
 const Product = require('./models/product');
+const Customer = require('./models/customer');
 
 const indexRoute = require('./routes/index');
 const productRoute = require('./routes/product');
