@@ -1,4 +1,4 @@
-# Node-Store
+# :books:Node-Store
 
 Project created to study the APIs implementation using NODE based in courses offered by [balta.io](https://balta.io/)
 
@@ -17,8 +17,11 @@ npm start
 ```
 
 ## References
+
 [balta.io](https://balta.io/)
+[1972 - Criando APIs com Node](https://balta.io/cursos/criando-apis-com-node)
 
+## :pencil: License
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+Copyright @ 2019 [Marcos Felipe](http://www.linkedin.com/in/pmarcosfelipe).<br>
+This project is [MIT](https://choosealicense.com/licenses/mit/) licensed.
