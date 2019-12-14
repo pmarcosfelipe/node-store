@@ -18,7 +18,7 @@ npm start
 
 ## References
 
-[balta.io](https://balta.io/)
+[balta.io](https://balta.io/)<br>
 [1972 - Criando APIs com Node](https://balta.io/cursos/criando-apis-com-node)
 
 ## :pencil: License
